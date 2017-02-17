@@ -3,12 +3,14 @@ const config      = require('../../config.json');
 const compression = require('compression');
 const express     = require('express');
 const helmet      = require('helmet');
+const httpStatus  = require('http-status');
 const mongoose    = require('mongoose');
 const path        = require('path');
 
 const ASSETS_PATH = path.join(__dirname, '../../assets');
 const BIN_PATH    = path.join(__dirname, '../../bin');
-const PORT        = process.env.PORT || config.PORT || 3000;
+const DEBUG_PORT  = 3000;
+const PORT        = process.env.PORT || config.PORT || DEBUG_PORT;
 const DB_URL      = process.env.DB_URL || config.URL ||
   'mongodb://localhost/nightlife';
 
@@ -21,9 +23,9 @@ app.get('/*', displayHomepage);
 app.use(errorHandler);
 
 mongoose.Promise = global.Promise;
-mongoose
-  .connect(DB_URL)
-  .then(startServer, dbError);
+mongoose.
+  connect(DB_URL).
+  then(startServer, dbError);
 
 function startServer() {
   app.listen(PORT, function() {
@@ -39,12 +41,10 @@ function dbError(err) {
   process.exit(1);
 }
 
-function displayHomepage(req, res, next) {
-  res.sendFile('index.html', {
-    root: BIN_PATH
-  });
+function displayHomepage(req, res) {
+  res.sendFile('index.html', { root: BIN_PATH });
 }
 
 function errorHandler(err, req, res, next) {
-  res.status(500).send('SERVER ERROR');
+  res.status(httpStatus.INTERNAL_SERVER_ERROR).send('SERVER ERROR');
 }

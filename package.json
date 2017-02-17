@@ -8,7 +8,7 @@
     "prestart": "npm install",
     "start": "node src/server/app.js",
     "lint": "gulp lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "license": "ISC",
   "dependencies": {
@@ -16,6 +16,7 @@
     "compression": "1.6.2",
     "express": "4.14.1",
     "helmet": "3.4.0",
+    "http-status": "1.0.1",
     "mongoose": "4.8.3",
     "passport": "0.3.2",
     "passport-facebook": "2.1.1",
@@ -32,6 +33,7 @@
     "gulp-clean-css": "3.0.2",
     "gulp-concat": "2.6.1",
     "gulp-eslint": "3.0.1",
+    "gulp-jasmine": "2.4.2",
     "gulp-minify-html": "1.0.6",
     "gulp-uglify": "2.0.1",
     "jasmine": "2.5.3",

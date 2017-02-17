@@ -1,4 +1,5 @@
 {
   "server": "./src/server",
-  "serverJS": "./src/server/**/*.js"
+  "serverJs": "./src/server/**/*.js",
+  "serverSpecs": "./src/server/**/*.spec.js"
 }

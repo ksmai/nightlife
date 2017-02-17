@@ -34,7 +34,8 @@
     "no-labels"                    : "error",
     "no-loop-func"                 : "error",
     "no-magic-numbers"             : ["error", {
-                                       "enforceConst": true
+                                       "enforceConst": true,
+                                       "ignore": [1]
                                      }],
     "no-multi-str"                 : "error",
     "no-new-func"                  : "error",
@@ -48,7 +49,8 @@
     "radix"                        : "error",
     "no-with"                      : "error",
     "no-param-reassign"            : "error",
-    "no-use-before-define"         : "error",
+    "no-unused-vars"               : ["error", { "args": "none" }],
+    "no-use-before-define"         : ["error", "nofunc"],
 
     "global-require"               : "error",
     "no-path-concat"               : "error",
@@ -61,10 +63,20 @@
     "comma-style"                  : "error",
     "computed-property-spacing"    : "error",
     "func-call-spacing"            : "error",
-    "indent"                       : ["error", 2],
+    "indent"                       : ["error", 2, { "SwitchCase": 1 }],
     "key-spacing"                  : "error",
-    "keyword-spacing"              : "error",
-    "max-len"                      : "error",
+    "keyword-spacing"              : ["error", { "overrides": {
+                                       "if"    : { "after": false },
+                                       "for"   : { "after": false },
+                                       "while" : { "after": false },
+                                       "switch": { "after": false }
+                                     }}],
+    "max-len"                      : ["error", {
+                                       "ignoreUrls"            : true,
+                                       "ignoreStrings"         : true,
+                                       "ignoreTemplateLiterals": true,
+                                       "ignoreRegExpLiterals"  : true
+                                     }],
     "max-statements"               : ["error", 75],
     "multiline-ternary"            : ["error", "always"],
     "new-parens"                   : "error",
