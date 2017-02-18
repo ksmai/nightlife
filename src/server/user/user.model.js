@@ -20,11 +20,13 @@ const userSpec = {
   account: {
     type: String,
     required: true,
-    enum: ['facebook', 'twitter']
+    enum: ['facebook', 'twitter'],
+    index: true
   },
   socialMediaId: {
     type: Number,
-    required: true
+    required: true,
+    index: true
   },
   registerDate: {
     type: Date,

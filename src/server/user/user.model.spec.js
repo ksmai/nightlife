@@ -16,27 +16,28 @@ describe('User model', function() {
   let testUser;
 
   beforeAll(function(done) {
-    const states = {
-      DISCONNECTED: 0,
-      CONNECTED: 1
-    };
+    const CONNECTED = 1;
+    if(mongoose.connection.readyState === CONNECTED) return done();
 
-    switch(mongoose.connection.readyState) {
-      case states.DISCONNECTED:
-        return mongoose.
-          connect(DB_URL).
-          then(done, done.fail);
-      case states.CONNECTED:
-        return done();
-      default:
-        return done.fail();
-    }
+    return mongoose.
+      connect(DB_URL).
+      then(done, done.fail);
   });
 
   afterAll(function(done) {
-    mongoose.
+    const DISCONNECTED = 0;
+
+    return mongoose.
       disconnect().
-      then(done, done.fail);
+      then(function wait() {
+        if(mongoose.connection.readyState === DISCONNECTED) return done();
+
+        return new global.Promise(function(resolve, reject) {
+          const timeout = 500;
+          setTimeout(resolve, timeout);
+        }).then(wait);
+      }).
+      catch(done.fail);
   });
 
   beforeEach(function(done) {

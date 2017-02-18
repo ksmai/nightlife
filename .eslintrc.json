@@ -35,7 +35,7 @@
     "no-loop-func"                 : "error",
     "no-magic-numbers"             : ["error", {
                                        "enforceConst": true,
-                                       "ignore": [1]
+                                       "ignore": [1, 0, -1]
                                      }],
     "no-multi-str"                 : "error",
     "no-new-func"                  : "error",
@@ -87,7 +87,6 @@
     "no-trailing-spaces"           : "error",
     "no-unneeded-ternary"          : "error",
     "no-whitespace-before-property": "error",
-    "object-curly-newline"         : "error",
     "object-property-newline"      : "error",
     "one-var-declaration-per-line" : ["error", "initializations"],
     "operator-assignment"          : ["error", "always"],
@@ -104,7 +103,11 @@
     "space-before-function-paren"  : ["error", "never"],
     "space-in-parens"              : ["error", "never"],
     "space-infix-ops"              : "error",
-    "spaced-comment"               : ["error", "always"],
+    "spaced-comment"               : ["error", "always", {
+                                       "line": {
+                                         "exceptions": ["/"]
+                                       }
+                                     }],
     "template-tag-spacing"         : ["error", "never"],
     
     "yield-star-spacing"           : ["error", "before"],
