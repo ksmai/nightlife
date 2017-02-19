@@ -36,6 +36,6 @@ function setupApp(mount, app) {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(mount, authRouter);
-  
+
   return app;
 }

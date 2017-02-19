@@ -68,7 +68,7 @@ describe('User model', function() {
   });
 
   it('should reject user with an invalid picture URL', function(done) {
-    testUser.picture = 'http://some.invalid.picture/hello/world';
+    testUser.picture = 'file://c:/user/jon/desktop/me.jpg';
     return User.
       create(testUser).
       then(done.fail, done);

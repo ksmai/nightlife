@@ -53,7 +53,7 @@ function ensureLogin(req, res, next) {
 
 function logout(req, res) {
   req.logout();
-  res.status(200).send('Successful Logout');
+  res.send('Successful Logout');
 }
 
 function getMyInfo(req, res) {
