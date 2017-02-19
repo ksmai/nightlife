@@ -1,4 +1,5 @@
 'use strict';
+const auth        = require('./auth/auth');
 const config      = require('../../config.json');
 const compression = require('compression');
 const express     = require('express');
@@ -19,6 +20,7 @@ app.use(helmet());
 app.use(compression());
 app.use(express.static(BIN_PATH));
 app.use(express.static(ASSETS_PATH));
+auth('/auth', app);
 app.get('/*', displayHomepage);
 app.use(errorHandler);
 

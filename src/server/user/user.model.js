@@ -15,7 +15,7 @@ const userSpec = {
     type: String,
     required: true,
     trim: true,
-    match: /^https?:\/\/.+(?:\..+){1,2}\/.+\.(?:png|jpg|jpeg|gif|svg)/
+    match: /^https?:\/\/.+(?:\..+){1,2}\/.+/
   },
   account: {
     type: String,
