@@ -230,5 +230,98 @@ describe('Place model', function() {
     });
   });
 
-  // describe('- getCount statics');
+  describe('- getCount statics', function() {
+    const existingPlaces = [{
+      _id: 'place 1'
+    }, {
+      _id: 'place 2 with more people',
+      participants: [{
+        user: '58a83ccb2284041254978d4b'
+      }, {
+        user: '58a30e014b263b1fa88fc339',
+        joinDate: new Date(new Date().getUTCFullYear() - 1, 1, 1)
+      }]
+    }];
+
+    beforeEach(function(done) {
+      return Place.
+        insertMany(existingPlaces).
+        then(done, done.fail);
+    });
+
+    it('can look up place with a single id (string)', function(done) {
+      return Place.
+        getCounts(existingPlaces[0]._id).
+        then(function(docs) {
+          expect(docs.length).toBe(1);
+          expect(docs[0].participants.length).toBe(0);
+          expect(docs[0].count).toBe(0);
+          done();
+        }).
+        catch(done.fail);
+    });
+
+    it('can look up multiple places', function(done) {
+      return Place.
+        getCounts(existingPlaces.map(place => place._id)).
+        then(function(docs) {
+          expect(docs.length).toBe(existingPlaces.length);
+          expect(docs.map(doc => doc._id)).
+            toEqual(existingPlaces.map(place => place._id));
+          done();
+        }).
+        catch(done.fail);
+    });
+
+    it('can upsert a new place', function(done) {
+      const newId = 'A new empty place!';
+      const ids = existingPlaces.
+        map(place => place._id).
+        concat([newId]);
+
+      return Place.
+        getCounts(ids).
+        then(function(docs) {
+          expect(docs.length).toBe(existingPlaces.length + 1);
+          expect(docs[docs.length - 1]._id).toBe(newId);
+          expect(docs[1].count).toBe(1);
+          done();
+        }).
+        catch(done.fail);
+    });
+
+    it('can remove user joined more than 1 day ago', function(done) {
+      return Place.
+        getCounts(existingPlaces.map(place => place._id)).
+        then(function(docs) {
+          expect(docs.length).toBe(existingPlaces.length);
+          expect(docs[1].count).
+            toBeLessThan(existingPlaces[1].participants.length);
+          expect(docs[1].participants[0].user.toString()).toBe(
+            existingPlaces[1].participants[0].user.toString());
+          done();
+        }).
+        catch(done.fail);
+    });
+
+    it('can sort result documents according to input ids', function(done) {
+      const newId = 'a new id';
+      const reordered = [
+        existingPlaces[1]._id, newId, existingPlaces[0]._id];
+
+      return Place.
+        create({_id: newId}).
+        then(function() {
+          return Place.getCounts(reordered);
+        }).
+        then(function(docs) {
+          expect(docs.length).toBe(reordered.length);
+          expect(docs.map(doc => doc._id)).toEqual(reordered);
+          expect(docs.map(doc => doc.count)).toEqual([1, 0, 0]);
+          done();
+        }).
+        catch(done.fail);
+    });
+
+  });
 });

@@ -19,14 +19,30 @@ module.exports = function getCounts(places) {
 
   return this.
     update(query, update, options).
-    then(function() {
+    then(() => {
       return this.find(query).exec();
     }).
-    then(function(docs) {
+    then((docs) => {
       if(docs.length !== ids.length) {
-        throw new Error(`Fail to get counts for: ${places}`);
+        const newIds = ids.slice();
+        docs.forEach(function(doc) {
+          const idx = newIds.indexOf(doc._id);
+          if(idx === -1) throw new Error(`Cannot get counts for ${ids}`);
+          newIds.splice(idx, 1);
+        });
+
+        const newDocs = newIds.map((id) => ({_id: id}));
+
+        return this.
+          insertMany(newDocs).
+          then(() => {
+            return this.find(query).exec();
+          });
       }
 
+      return docs;
+    }).
+    then(function(docs) {
       return docs.sort(function(a, b) {
         if(ids.indexOf(a._id) < ids.indexOf(b._id)) return -1;
         return 1;
