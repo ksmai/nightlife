@@ -1,0 +1,14 @@
+{
+  "name": "nightlife",
+  "description": "Coordinate nightlife for a group of people",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "angular": "1.6.2",
+    "angular-route": "1.6.2",
+    "angular-animate": "1.6.2",
+    "angular-resource": "1.6.2",
+    "es6-shim": "0.35.3",
+    "es5-shim": "4.5.9"
+  }
+}

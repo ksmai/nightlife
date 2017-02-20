@@ -5,10 +5,13 @@
   "description": "FCC Nightlife Cordination",
   "repository": "https://github.com/ksmai/nightlife.git",
   "scripts": {
+    "build": "gulp clean & gulp build",
+    "postinstall": "bower install",
     "prestart": "npm install",
+    "pretest": "npm install",
     "start": "node src/server/app.js",
-    "lint": "gulp lint",
-    "test": "gulp test"
+    "test": "gulp test",
+    "watch": "gulp watch"
   },
   "license": "ISC",
   "dependencies": {

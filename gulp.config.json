@@ -1,5 +1,24 @@
 {
   "server": "./src/server",
   "serverJs": "./src/server/**/*.js",
-  "serverSpecs": "./src/server/**/*.spec.js"
+  "serverSpecs": "./src/server/**/*.spec.js",
+
+  "clientHtml": "./src/client/**/*.html",
+  "clientCss": ["./src/client/css/base.css", "./src/client/**/*.css"],
+  "clientAppJs": ["./src/client/**/*.module.js",
+    "./src/client/**/*.js", "!./src/client/**/*.spec.js"],
+  "clientJs": "./src/client/**/*.js",
+  "clientSpecs": "./src/client/**/*.spec.js",
+
+  "vendorJs": [
+    "./bower_components/es5-shim/es5-shim.min.js",
+    "./bower_components/es6-shim/es6-shim.min.js",
+    "./bower_components/angular/angular.min.js",
+    "./bower_components/angular-route/angular-route.min.js",
+    "./bower_components/angular-animate/angular-animate.min.js",
+    "./bower_components/angular-resource/angular-resource.min.js"
+  ],
+
+  "bin": "./bin"
+
 }

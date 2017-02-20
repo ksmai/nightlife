@@ -8,6 +8,9 @@
     "jasmine"   : true,
     "protractor": true
   },
+  "globals": {
+    "angular": false
+  },
   "extends": "eslint:recommended",
 
   "rules": {
