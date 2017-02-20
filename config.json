@@ -1,4 +1,12 @@
 {
   "PORT": 3000,
-  "DB_URL": "mongodb://localhost/nightlife-dev"
+  "DB_URL": "",
+  "TWITTER_CONSUMER_KEY": "",
+  "TWITTER_CONSUMER_SECRET": "",
+  "FACEBOOK_APP_ID": "",
+  "FACEBOOK_APP_SECRET": "",
+  "YELP_CONSUMER_KEY": "",
+  "YELP_CONSUMER_SECRET": "",
+  "YELP_TOKEN": "",
+  "YELP_TOKEN_SECRET": ""
 }
