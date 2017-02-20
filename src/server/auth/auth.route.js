@@ -1,4 +1,5 @@
 'use strict';
+const core       = require('../core/core');
 const express    = require('express');
 const httpStatus = require('http-status');
 const passport   = require('passport');
@@ -7,7 +8,7 @@ const router = express.Router();
 const strategies = ['facebook', 'twitter'];
 for(const strategy of strategies) {
   router.get(`/${strategy}`,
-    ensureNotLogin,
+    core.isNotAuthenticated,
     saveReferrer,
     passport.authenticate(strategy));
 
@@ -18,8 +19,8 @@ for(const strategy of strategies) {
     returnToReferrer);
 }
 
-router.get('/me', ensureLogin, getMyInfo);
-router.get('/logout', ensureLogin, logout);
+router.get('/me', core.isAuthenticated, getMyInfo);
+router.get('/logout', core.isAuthenticated, logout);
 router.use(authErrorHandler);
 
 module.exports = router;
@@ -37,18 +38,6 @@ function returnToReferrer(req, res) {
 
 function authErrorHandler(err, req, res, next) {
   res.status(httpStatus.UNAUTHORIZED).send('UNAUTHORIZED');
-}
-
-function ensureNotLogin(req, res, next) {
-  if(req.user) return next(new Error('UNAUTHORIZED'));
-
-  return next();
-}
-
-function ensureLogin(req, res, next) {
-  if(!req.user) return next(new Error('UNAUTHORIZED'));
-
-  return next();
 }
 
 function logout(req, res) {

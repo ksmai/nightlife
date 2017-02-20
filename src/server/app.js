@@ -7,6 +7,7 @@ const helmet      = require('helmet');
 const httpStatus  = require('http-status');
 const mongoose    = require('mongoose');
 const path        = require('path');
+const placeRouter = require('./place/place.route');
 const yelpRouter  = require('./yelp/yelp.route');
 
 const ASSETS_PATH = path.join(__dirname, '../../assets');
@@ -25,6 +26,7 @@ app.use(express.static(BIN_PATH));
 app.use(express.static(ASSETS_PATH));
 auth(AUTH_MOUNT, app);
 app.use(API_MOUNT, yelpRouter);
+app.use(API_MOUNT, placeRouter);
 app.get('/*', displayHomepage);
 app.use(errorHandler);
 
