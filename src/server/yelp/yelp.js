@@ -1,29 +1,72 @@
 'use strict';
-const config = require('../../../config.json');
-// const http = require('http');
+const config  = require('../../../config.json');
+const crypto  = require('crypto');
+const OAuth   = require('oauth-1.0a');
+const request = require('request');
 
-const auth = {};
-const keys = ['YELP_CONSUMER_KEY', 'YELP_CONSUMER_SECRET', 'YELP_TOKEN',
-  'YELP_TOKEN_SECRET'];
+module.exports = ((function({oauth, token}) {
+  return listBusiness.bind(this, oauth, token);
+})(initOAuth()));
+////////////////////
 
-for(const key of keys) {
-  auth[key] = process.env[key] || config[key];
-  if(!auth[key]) throw new Error(`${key} not available`);
+function initOAuth() {
+  const auth = {};
+  const keys = ['YELP_CONSUMER_KEY', 'YELP_CONSUMER_SECRET', 'YELP_TOKEN',
+    'YELP_TOKEN_SECRET'];
+
+  for(const key of keys) {
+    auth[key] = process.env[key] || config[key];
+    if(!auth[key]) throw new Error(`${key} not available`);
+  }
+
+  /* eslint camelcase: "off" */
+  const oauth = OAuth({
+    consumer: {
+      key: auth.YELP_CONSUMER_KEY,
+      secret: auth.YELP_CONSUMER_SECRET
+    },
+    signature_method: 'HMAC-SHA1',
+    hash_function: function(base_string, key) {
+      return crypto.
+        createHmac('sha1', key).
+        update(base_string).
+        digest('base64');
+    }
+  });
+
+  const token = {
+    key: auth.YELP_TOKEN,
+    secret: auth.YELP_TOKEN_SECRET
+  };
+
+  return { oauth, token };
 }
 
-module.exports = function listBusiness(loc, term = 'food') {
-  let url = `https://api.yelp.com/v2/search?term=${encodeURIComponent(term)}`;
-  if(loc.lat && loc.lon) {
-    url += `&ll=${loc.lat},${loc.lon}`;
-  } else {
-    url += `&location=${encodeURIComponent(loc)}`;
-  }
-  url += `oauth_consumer_key="${auth.YELP_CONSUMER_KEY}"`;
-  url += `oauth_token="${auth.YELP_TOKEN}"`;
-  url += 'oauth_signature_method="HMAC-SHA1"';
-  url += `oauth_signature="${''}"`; // TODO
-  url += `oauth_timestamp="${''}"`; // TODO
-  url += `oauth_nonce="${''}"`; // TODO
+function listBusiness(oauth, token, loc, term = 'food') {
+  const requestData = {
+    url: 'https://api.yelp.com/v2/search',
+    method: 'GET',
+    data: {}
+  };
 
-  return global.Promise.resolve(url); // TODO
-};
+  requestData.url += `?term=${term}`;
+
+  if(loc.lat && loc.lon) {
+    requestData.url += `&ll=${loc.lat},${loc.lon}`;
+  } else {
+    requestData.url += `&location=${encodeURIComponent(loc)}`;
+  }
+
+  return new global.Promise(function(resolve, reject) {
+    request({
+      url: requestData.url,
+      method: requestData.method,
+      form: requestData.data,
+      headers: oauth.toHeader(oauth.authorize(requestData, token))
+    }, function(err, res, body) {
+      if(err) return reject(err);
+
+      resolve(JSON.parse(body));
+    });
+  });
+}

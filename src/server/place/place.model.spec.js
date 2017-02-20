@@ -290,6 +290,20 @@ describe('Place model', function() {
         catch(done.fail);
     });
 
+    it('can upsert multiple new places', function(done) {
+      const newIds = ['i am new', 'i am new too', 'so am i'];
+
+      return Place.
+        getCounts(newIds).
+        then(function(docs) {
+          expect(docs.length).toBe(newIds.length);
+          expect(docs.map(doc => doc._id)).toEqual(newIds);
+          expect(docs.map(doc => doc.count)).toEqual([0, 0, 0]);
+          return done();
+        }).
+        catch(done.fail);
+    });
+
     it('can remove user joined more than 1 day ago', function(done) {
       return Place.
         getCounts(existingPlaces.map(place => place._id)).
