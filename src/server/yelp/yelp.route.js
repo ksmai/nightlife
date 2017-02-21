@@ -40,6 +40,13 @@ function getBusiness(req, res, next) {
             if(busi.id.trim() !== docs[idx]._id) throw new Error();
 
             busi.joinCount = docs[idx].count;
+
+            if(req.user) {
+              busi.hasJoined = docs[idx].
+                participants.
+                map((participant) => participant.user.toString()).
+                indexOf(req.user._id.toString()) > -1;
+            }
           });
 
           return res.json(response);
