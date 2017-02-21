@@ -1,8 +1,24 @@
 <section>
 <h1>Nightlife Coordination</h1>
-<form ng-submit="vm.search()">
+<form data-ng-submit="vm.search()">
   <input type="text" ng-model="vm.query">
   <button type="submit">Submit</button>
   <button type="button" ng-click="vm.search(true)" ng-disabled="!vm.hasGeolocation">Use My Location</button>
 </form>
+
+<div data-ng-hide="vm.user.pending">
+  <div data-ng-show="vm.user.data">
+    Welcome, {{vm.user.data.name}}
+    <a href="/auth/logout" target="_self">Logout</a>
+  </div>
+
+  <div data-ng-hide="vm.user.data">
+    <a href="/auth/facebook" target="_self">Facebook login</a>
+    <a href="/auth/twitter" target="_self">Twitter login</a>
+  </div>
+</div>
+
+<div data-ng-show="vm.user.pending">
+  Loading user data!
+</div>
 </section>
