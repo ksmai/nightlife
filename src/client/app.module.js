@@ -2,6 +2,8 @@
   'use strict';
   angular.module('app', [
     'app.searchBox',
-    'ngRoute'
+    'app.featureList',
+    'app.businessList',
+    'app.core'
   ]);
 }());

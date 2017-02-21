@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html data-ng-app="app">
 <head lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,12 @@
 <title>Nightlife</title>
 </head>
 
-<body>
-<div ng-view></div>
+<body id="top">
+<div>
+  <error-displayer></error-displayer>
+  <search-box data-on-main="main-row"></search-box>
+  <div data-ng-view></div>
+</div>
 
 <script src="/vendors.min.js"></script>
 <script src="/app.min.js"></script>

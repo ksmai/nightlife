@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.
-    module('app').
+    module('app.featureList').
     config(configMainRoute);
 
   configMainRoute.$inject = ['$locationProvider', '$routeProvider'];
@@ -10,7 +10,7 @@
 
     $routeProvider.
       when('/', {
-        template: '<search-box></search-box>'
+        template: '<feature-list></feature-list>'
       }).
       otherwise('/');
   }
