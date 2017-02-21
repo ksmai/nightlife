@@ -9,12 +9,13 @@
     });
 
   SearchBoxController.$inject = ['$location', '$scope', '$window',
-    'loginService', 'errorDisplayer'];
+    'loginService', 'errorDisplayer', '$routeParams'];
   function SearchBoxController($location, $scope, $window, loginService,
-    errorDisplayer) {
+    errorDisplayer, $routeParams) {
     const vm = this;
     vm.user = loginService;
     vm.search = search;
+    vm.query = $routeParams.query;
     vm.hasGeolocation = 'geolocation' in $window.navigator;
 
     function search(auto) {

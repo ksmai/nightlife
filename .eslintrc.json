@@ -9,7 +9,8 @@
     "protractor": true
   },
   "globals": {
-    "angular": false
+    "angular": false,
+    "inject": false
   },
   "extends": "eslint:recommended",
 

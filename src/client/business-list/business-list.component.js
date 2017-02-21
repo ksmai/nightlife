@@ -9,8 +9,8 @@
     });
 
   BusinessListController.$inject = ['$routeParams', 'restClient',
-    '$route', '$location', 'loginService', 'errorDisplayer'];
-  function BusinessListController($routeParams, restClient, $route,
+    '$location', 'loginService', 'errorDisplayer'];
+  function BusinessListController($routeParams, restClient,
     $location, loginService, errorDisplayer) {
     const vm = this;
     vm.query = $routeParams.query;
@@ -48,6 +48,11 @@
     function unjoin(busi) {
       if(vm.user.pending) return;
 
+      if(!vm.user.data) {
+        errorDisplayer.setMessage('Please login.');
+        return;
+      }
+
       busi.pending = true;
       restClient.unjoin({ id: busi.id }, {}, joinSuccess.bind(null, busi),
         errorHandler.bind(null, busi));
@@ -57,8 +62,6 @@
       const OK = 200;
       busi.pending = false;
       if(status === OK) {
-        // $route.reload();
-        console.log('OK');
         busi.done = true;
       } else {
         errorHandler(busi, { value, headers, status, statusText });

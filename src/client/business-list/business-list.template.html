@@ -1,7 +1,7 @@
 <section>
   Query is {{vm.query}}
 
-  <ul>
+  <ul data-ng-show="vm.businesses.businesses">
     <li data-ng-repeat="busi in vm.businesses.businesses">
       {{busi|json}}
       <button type="button" data-ng-click="vm.join(busi)" data-ng-hide="busi.hasJoined || busi.done" data-ng-disabled="busi.pending">Join</button>
@@ -10,4 +10,8 @@
       <p data-ng-show="busi.done">Done</p>
     </li>
   </ul>
+
+  <div data-ng-hide="vm.businesses.businesses">
+    LOADING
+  </div>
 </section>

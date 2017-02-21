@@ -6,6 +6,7 @@
   "repository": "https://github.com/ksmai/nightlife.git",
   "scripts": {
     "build": "gulp clean & gulp build",
+    "karma-once": "karma start karma.conf.js --single-run",
     "postinstall": "bower install & npm run build",
     "prestart": "npm install",
     "pretest": "npm install",
