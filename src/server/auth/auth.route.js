@@ -42,7 +42,7 @@ function authErrorHandler(err, req, res, next) {
 
 function logout(req, res) {
   req.logout();
-  res.send('Successful Logout');
+  res.redirect('/');
 }
 
 function getMyInfo(req, res) {

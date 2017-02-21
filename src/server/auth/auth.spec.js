@@ -86,7 +86,7 @@ describe('auth module', function() {
 
       return request.
         get('/logout').
-        expect(httpStatus.OK).
+        expect(httpStatus.FOUND).
         then(function() {
           expect(logout).toHaveBeenCalledTimes(1);
           done();
