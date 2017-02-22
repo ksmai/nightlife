@@ -4,7 +4,9 @@
   "serverSpecs": "./src/server/**/*.spec.js",
 
   "clientHtml": "./src/client/**/*.html",
-  "clientCss": ["./src/client/css/base.css", "./src/client/**/*.css"],
+
+  "clientScss": "./src/client/app.scss",
+
   "clientAppJs": ["./src/client/**/*.module.js",
     "./src/client/**/*.js", "!./src/client/**/*.spec.js"],
   "clientJs": "./src/client/**/*.js",

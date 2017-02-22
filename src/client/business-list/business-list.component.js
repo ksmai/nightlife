@@ -61,6 +61,7 @@
     function joinSuccess(busi, value, headers, status, statusText) {
       const OK = 200;
       busi.pending = false;
+      busi.hasJoined = !busi.hasJoined;
       if(status === OK) {
         busi.done = true;
       } else {

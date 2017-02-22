@@ -22,7 +22,7 @@
       if(auto) {
         $window.navigator.geolocation.getCurrentPosition(
           locationSuccessHandler, locationErrorHandler);
-      } else {
+      } else if(vm.query) {
         $location.path(`/search/${vm.query}`);
       }
 
@@ -37,7 +37,7 @@
       function locationErrorHandler(err) {
         $scope.$apply(function() {
           vm.hasGeolocation = false;
-          errorDisplayer.setMessage('Fail to detect your location. Please review your privacy settings.');
+          errorDisplayer.setMessage(err && err.message || 'Fail to detect your location. Please review your privacy settings.');
         });
       }
     }

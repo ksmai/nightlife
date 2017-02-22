@@ -9,6 +9,7 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const del = require('del');
 const babel = require('gulp-babel');
+const sass = require('gulp-sass');
 
 gulp.task('lint-server', function() {
   return gulp.
@@ -18,7 +19,7 @@ gulp.task('lint-server', function() {
     pipe(eslint.failAfterError());
 });
 
-gulp.task('test-server', ['lint-server'], function() {
+gulp.task('test-server', function() {
   return gulp.
     src(paths.serverSpecs).
     pipe(jasmine());
@@ -43,7 +44,8 @@ gulp.task('minhtml', function() {
 
 gulp.task('mincss', function() {
   return gulp.
-    src(paths.clientCss).
+    src(paths.clientScss).
+    pipe(sass().on('error', sass.logError)).
     pipe(concat('styles.min.css')).
     pipe(autoprefixer({
       browsers: ['last 2 versions'],
@@ -53,7 +55,7 @@ gulp.task('mincss', function() {
     pipe(gulp.dest(paths.bin));
 });
 
-gulp.task('minjs', ['lint-client'], function() {
+gulp.task('minjs', function() {
   return gulp.
     src(paths.clientAppJs).
     pipe(concat('app.min.js')).

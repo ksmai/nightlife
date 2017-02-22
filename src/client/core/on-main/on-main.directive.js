@@ -18,7 +18,9 @@
       function toggleClass() {
         if($location.path() === '/') {
           elem.addClass(attr.onMain);
+          elem.removeClass(`not-${attr.onMain}`);
         } else {
+          elem.addClass(`not-${attr.onMain}`);
           elem.removeClass(attr.onMain);
         }
       }

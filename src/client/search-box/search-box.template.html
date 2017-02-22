@@ -1,24 +1,40 @@
-<section>
-<h1>Nightlife Coordination</h1>
-<form data-ng-submit="vm.search()">
-  <input type="text" ng-model="vm.query">
-  <button type="submit">Submit</button>
-  <button type="button" ng-click="vm.search(true)" ng-disabled="!vm.hasGeolocation">Use My Location</button>
-</form>
+<section class="container row">
+  <div class="search-box-container">
+    <h1 class="logo"><a href="/">Nightlife</a></h1>
 
-<div data-ng-hide="vm.user.pending">
-  <div data-ng-show="vm.user.data">
-    Welcome, {{vm.user.data.name}}
-    <a href="/auth/logout" target="_self">Logout</a>
+    <form data-ng-submit="vm.search()" class="search-form">
+      <fieldset>
+        <div class="search-field">
+          <input type="text" data-ng-model="vm.query" placeholder="Search with a location or coordinates" autofocus>
+          <button type="submit">Search</button>
+          <button type="button" ng-click="vm.search(true)" ng-disabled="!vm.hasGeolocation">My Location</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <h5 class="powered-by">Powered by
+          <a href="https://www.yelp.com/developers/documentation/v2/search_api">Yelp</a>
+        </h5>
+      </fieldset>
+    </form>
+
+    <div data-ng-hide="vm.user.pending" class="user-info">
+      <div data-ng-show="vm.user.data">
+        Welcome, {{vm.user.data.name}}
+        <a href="/auth/logout" target="_self">
+          <button type="button">Logout</button>
+        </a>
+      </div>
+      <div data-ng-hide="vm.user.data">
+        <a href="/auth/facebook" target="_self">Facebook login</a>
+        <a href="/auth/twitter" target="_self">Twitter login</a>
+      </div>
+    </div>
+
+    <div data-ng-show="vm.user.pending" class="user-info">
+      Loading user data!
+    </div>
+
+  
+
   </div>
-
-  <div data-ng-hide="vm.user.data">
-    <a href="/auth/facebook" target="_self">Facebook login</a>
-    <a href="/auth/twitter" target="_self">Twitter login</a>
-  </div>
-</div>
-
-<div data-ng-show="vm.user.pending">
-  Loading user data!
-</div>
 </section>

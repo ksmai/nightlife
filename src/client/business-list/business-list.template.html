@@ -1,17 +1,25 @@
 <section>
-  Query is {{vm.query}}
-
-  <ul data-ng-show="vm.businesses.businesses">
-    <li data-ng-repeat="busi in vm.businesses.businesses">
-      {{busi|json}}
-      <button type="button" data-ng-click="vm.join(busi)" data-ng-hide="busi.hasJoined || busi.done" data-ng-disabled="busi.pending">Join</button>
-      <button type="button" data-ng-click="vm.unjoin(busi)" data-ng-show="busi.hasJoined && !busi.done" data-ng-disabled="busi.pending">Unjoin</button>
-      <p data-ng-show="busi.pending">Loading</p>
-      <p data-ng-show="busi.done">Done</p>
-    </li>
-  </ul>
+  <div data-ng-show="vm.businesses.businesses">
+    Found {{vm.businesses.businesses.length}} most popular businesses at {{vm.query}}
+    <ul> 
+      <li data-ng-repeat="busi in vm.businesses.businesses | orderBy:['-hasJoined', '-joinCount', '-rating']">
+        <img ng-src="{{busi.image_url}}" alt="{{busi.name}}">
+        {{busi.name}} <br>
+        {{busi.rating}} <br>
+        {{busi.snippet_text}} <br>
+        {{busi.location.display_address.join(', ')}} <br>
+        {{busi.display_phone}} <br>
+        {{busi.joinCount}}
+        <button type="button" data-ng-click="vm.join(busi)" data-ng-hide="busi.hasJoined || busi.done" data-ng-disabled="busi.pending">Join</button>
+        <button type="button" data-ng-click="vm.unjoin(busi)" data-ng-show="busi.hasJoined && !busi.done" data-ng-disabled="busi.pending">Unjoin</button>
+        <p data-ng-show="busi.pending">Loading</p>
+        <p data-ng-show="busi.done">Done</p>
+      </li>
+    </ul>
+    
+  </div>
 
   <div data-ng-hide="vm.businesses.businesses">
-    LOADING
+    Loading businesses at {{vm.query}}
   </div>
 </section>

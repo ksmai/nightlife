@@ -1,0 +1,49 @@
+.logo {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.powered-by {
+  text-align: right;
+}
+
+.search-form,
+.user-info {
+  margin-top: 20px;
+}
+
+.search-field {
+  display: flex;
+  width: 100%;
+
+  input {
+    flex: 1;
+  }
+}
+
+
+.not-feature-item-main {
+  .logo {
+    font-size: $primary-font-size * 3;
+    line-height: 1;
+  }
+
+  .search-box-container {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .search-form {
+    flex: 1;
+    padding: 0 20px;
+  }
+}
+
+
+
+
+@media (min-width: $mobile-break-point) {
+  
+}

@@ -19,17 +19,21 @@ describe('onMain directive', function() {
     function() {
       expect($location.path).toHaveBeenCalledTimes(1);
       expect(element.hasClass(attr)).toBe(true);
+      expect(element.hasClass(`not-${attr}`)).toBe(false);
     }
   );
 
   it('listens to the routeChangeSuccess event and toggle class accordingly',
     function() {
+      /* eslint no-magic-numbers: "off" */
       $rootScope.$broadcast('$routeChangeSuccess');
       expect($location.path).toHaveBeenCalledTimes(2);
+      expect(element.hasClass(`not-${attr}`)).toBe(true);
       expect(element.hasClass(attr)).toBe(false);
 
       $rootScope.$broadcast('$routeChangeSuccess');
       expect($location.path).toHaveBeenCalledTimes(3);
+      expect(element.hasClass(`not-${attr}`)).toBe(false);
       expect(element.hasClass(attr)).toBe(true);
     }
   );

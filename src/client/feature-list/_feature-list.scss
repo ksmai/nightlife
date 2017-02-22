@@ -1,0 +1,78 @@
+.feature-item-main {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+@mixin feature-bg($color, $dir) {
+  background: $color;
+  background: linear-gradient($dir, darken($color, 20%), $color);
+}
+
+$left: to left;
+$right: to right;
+
+.feature-item {
+  min-height: 90vh;
+
+  &:nth-child(odd) {
+    text-align: right;
+  }
+
+  &:nth-child(6n+1) {
+    @include feature-bg($app-blue, $left);
+  }
+
+  &:nth-child(6n+2) {
+    @include feature-bg($app-orange, $right);
+  }
+
+  &:nth-child(6n+3) {
+    @include feature-bg($app-green, $left);
+  }
+
+  &:nth-child(6n+4) {
+    @include feature-bg($app-purple, $right);
+  }
+
+  &:nth-child(6n+5) {
+    @include feature-bg($app-brown, $left);
+  }
+
+  &:last-child {
+    @include feature-bg($primary-background-color, $right);
+  }
+}
+
+.feature-list-bottom {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.try-button {
+  border: 0;
+  font-size: $primary-font-size * 2;
+  background: $app-green;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  box-shadow: 0 5px 5px darken($app-green, 20%);
+
+  &:hover {
+    background: darken($app-green, 10%);
+    color: $primary-color;
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateY(5px);
+  }
+}
+
+.caption {
+  font-style: italic;
+  text-transform: capitalize;
+  font-weight: 700px;
+}

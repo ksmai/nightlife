@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html data-ng-app="app">
-<head lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/styles.min.css">
-<base href="/">
-<title>Nightlife</title>
-</head>
+  <head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Sansita" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.min.css">
+    <base href="/">
+    <title>Nightlife</title>
+  </head>
 
-<body id="top">
-<div>
-  <error-displayer></error-displayer>
-  <search-box data-on-main="main-row"></search-box>
-  <div data-ng-view></div>
-</div>
+  <body id="top">
+    <error-displayer></error-displayer>
+    <search-box data-on-main="feature-item-main"></search-box>
+    <div data-ng-view></div>
 
-<script src="/vendors.min.js"></script>
-<script src="/app.min.js"></script>
-</body>
+    <script src="/vendors.min.js"></script>
+    <script src="/app.min.js"></script>
+  </body>
 </html>

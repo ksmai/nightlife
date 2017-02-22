@@ -1,0 +1,94 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  color: $primary-color;
+  font-size: $primary-font-size;
+  line-height: $primary-line-height;
+  font-family: $primary-font-family;
+  background-color: $primary-background-color;
+  min-height: 100%;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  transition: $primary-transition;
+
+  &:link,
+  &:visited {
+    color: $app-cyan;
+  }
+
+  &:hover,
+  &:active {
+    color: $app-red;
+  }
+}
+
+button {
+  padding: 10px;
+  background-color: transparent;
+  color: $app-white;
+  border: 1px solid $app-white;
+  outline: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: $primary-transition;
+
+  &:hover {
+    background-color: $app-white;
+    color: $app-black;
+  }
+}
+
+input {
+  background-color: $primary-color;
+  color: invert($primary-color);
+  font-size: $primary-font-size;
+  font-family: $primary-font-family;
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: text;
+  transition: $primary-transition;
+
+  &::placeholder {
+    color: darken($primary-color, 30%);
+  }
+
+  &:focus {
+    background-color: lighten($primary-color, 20%);
+    box-shadow: 0 3px 20px rgba($primary-color, .64), 0 3px 20px rgba($primary-color, .16);
+
+    &::placeholder {
+      color: darken($primary-color, 50%);
+    }
+  }
+}
+
+h1 {
+  font-size: $primary-font-size * 5;
+  line-height: $primary-line-height;
+  font-family: $caption-font-family;
+}
+
+h2 {
+  font-size: $primary-font-size * 3;
+  line-height: $primary-line-height;
+  font-family: $caption-font-family;
+}
+
+h3 {
+  font-size: $primary-font-size * 1.5;
+}
+
+h5 {
+  font-size: $primary-font-size * .7;
+}
