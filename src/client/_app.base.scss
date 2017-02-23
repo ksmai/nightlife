@@ -45,6 +45,11 @@ button {
     background-color: $app-white;
     color: $app-black;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: lighten($primary-background-color, 50%);
+  }
 }
 
 input {

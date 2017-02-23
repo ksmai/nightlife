@@ -10,6 +10,8 @@
     "postinstall": "bower install & npm run build",
     "prestart": "npm install",
     "pretest": "npm install",
+    "preprotractor": "webdriver-manager update",
+    "protractor": "protractor e2e-test/protractor.conf.js",
     "start": "node src/server/app.js",
     "test": "gulp lint & gulp test & npm run karma-once",
     "watch": "gulp watch"
