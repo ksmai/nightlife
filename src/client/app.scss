@@ -11,6 +11,9 @@ $app-red   : #ab4642;
 $app-white : #d8d8d8;
 $app-yellow: #f7ca88;
 
+$facebook-color: #4867aa;
+$twitter-color: #1da1f2;
+
 /* primary variables */
 $primary-color: $app-white;
 $primary-background-color: $app-black;
@@ -31,4 +34,6 @@ $mobile-break-point: 769px;
 @import "app.base";
 @import "app.layout";
 @import "feature-list/feature-list";
-@import "search-box/search-box"
+@import "search-box/search-box";
+@import "business-list/business-list";
+@import "core/error-displayer/error-displayer";

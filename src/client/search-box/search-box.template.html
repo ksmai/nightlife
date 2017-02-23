@@ -5,9 +5,13 @@
     <form data-ng-submit="vm.search()" class="search-form">
       <fieldset>
         <div class="search-field">
-          <input type="text" data-ng-model="vm.query" placeholder="Search with a location or coordinates" autofocus>
-          <button type="submit">Search</button>
-          <button type="button" ng-click="vm.search(true)" ng-disabled="!vm.hasGeolocation">My Location</button>
+          <input type="text" data-ng-model="vm.query" placeholder="Location/Coordinates" autofocus>
+          <button type="submit" class="btn-icon">
+            <i class="fa fa-search fa-2x"></i>
+          </button>
+          <button type="button" ng-click="vm.search(true)" ng-disabled="!vm.hasGeolocation" class="btn-icon">
+            <i class="fa fa-globe fa-2x"></i>
+          </button>
         </div>
       </fieldset>
       <fieldset>
@@ -21,17 +25,23 @@
       <div data-ng-show="vm.user.data">
         Welcome, {{vm.user.data.name}}
         <a href="/auth/logout" target="_self">
-          <button type="button">Logout</button>
+          <button type="button">
+            <i class="fa fa-sign-out fa-2x"></i>
+          </button>
         </a>
       </div>
       <div data-ng-hide="vm.user.data">
-        <a href="/auth/facebook" target="_self">Facebook login</a>
-        <a href="/auth/twitter" target="_self">Twitter login</a>
+        <a href="/auth/facebook" target="_self">
+          <i class="fa fa-facebook-square fa-3x login-fb"></i>
+        </a>
+        <a href="/auth/twitter" target="_self">
+          <i class="fa fa-twitter-square fa-3x login-tt"></i>
+        </a>
       </div>
     </div>
 
     <div data-ng-show="vm.user.pending" class="user-info">
-      Loading user data!
+      <i class="fa fa-spinner fa-3x fa-spin"></i>
     </div>
 
   

@@ -1,0 +1,121 @@
+.check {
+  color: $app-green;
+}
+
+.cross {
+  color: $app-red;
+}
+
+.busi-item {
+  border-radius: 20px;
+  border: 1px solid $app-green;
+  margin: 40px auto;
+  padding: 10px;
+  transition: $primary-transition;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba($app-green, .24), 0 0 20px rgba($app-green, .16);
+  }
+}
+
+.busi-img {
+  float: left;
+  padding: 10px;
+
+  img {
+    transition: $primary-transition;
+    border-radius: 5px;
+  }
+
+  img:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+}
+
+.busi-info,
+.busi-snippet,
+.busi-contact,
+.busi-action {
+  padding: 10px;
+}
+
+.busi-info {
+  display: inline-block;
+  border-bottom: 1px solid $app-purple;
+
+  a {
+    color: $app-purple;
+  }
+
+  a:hover {
+    color: $app-orange;
+  }
+
+  * {
+    display: inline-block;
+  }
+
+  .busi-name {
+    margin-right: 1em;
+  }
+
+  .busi-count {
+    margin-left: 1em;
+  }
+}
+
+.busi-snippet {
+  color: $app-yellow;
+}
+
+.busi-contact {
+  color: $app-brown;
+}
+
+.busi-action {
+  float: right;
+}
+
+.has-joined-info {
+  color: $app-orange;
+}
+
+/* animations */
+.busi-item {
+  &.ng-enter {
+    transition: $primary-transition;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+
+    &.ng-enter-active {
+      opacity: 1;
+      width: 100%;
+    }
+  }
+
+  &.ng-move {
+    transition: $primary-transition;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+
+    &.ng-move-active {
+      opacity: 1;
+      width: 100%;
+    }
+  }
+
+  &.ng-leave {
+    transition: $primary-transition;
+    opacity: 1;
+    width: 100%;
+    overflow: hidden;
+
+    &.ng-leave-active {
+      opacity: 0;
+      width: 0;
+    }
+  }
+}

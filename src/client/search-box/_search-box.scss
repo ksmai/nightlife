@@ -19,6 +19,9 @@
 
   input {
     flex: 1;
+    display: block;
+    width: 100%;
+    min-width: 100px;
   }
 }
 
@@ -41,8 +44,21 @@
   }
 }
 
+.login-fb,
+.login-tt {
+  color: lighten($primary-background-color, 30%);
+  transition: $primary-transition;
+}
 
+.login-fb:hover {
+  text-shadow: 0 0 30px #fff;
+  color: $facebook-color;
+}
 
+.login-tt:hover {
+  text-shadow: 0 0 30px #fff;
+  color: $twitter-color;
+}
 
 @media (min-width: $mobile-break-point) {
   

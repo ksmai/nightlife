@@ -1,14 +1,23 @@
 <section>
-  <section class="feature-item" data-ng-repeat="caption in [
-    'List the most awesome business',
-    'Focus on your surroundings',
-    'Peek at tonight\'s trend',
-    'Share your choice at ease',
-    'Login with Facebook/Twitter',
-    'All these, and more'
-  ]">
-    <div class="container row">
-      <h2 class="caption">{{caption}}</h2>
+  <section class="feature-item" data-ng-repeat="item in [{
+      'caption': 'List the most awesome business',
+      'img': '/images/screenshot-list.jpg'
+    }, {
+      'caption': 'Focus on your surroundings',
+      'img': '/images/screenshot-focus.jpg'
+    }, {
+      'caption': 'Peek at tonight\'s trend',
+      'img': '/images/screenshot-peek.jpg'
+    }, {
+      'caption': 'Share your choice at ease',
+      'img': '/images/screenshot-join.jpg'
+    }, {
+      'caption': 'Login with Facebook and Twitter',
+      'img': '/images/screenshot-login.jpg'
+    }]">
+    <div class="container row group">
+      <img ng-src="{{item.img}}">
+      <h2 class="caption">{{item.caption}}</h2>
     </div>
   </section>
 

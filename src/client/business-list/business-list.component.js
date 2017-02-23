@@ -9,14 +9,16 @@
     });
 
   BusinessListController.$inject = ['$routeParams', 'restClient',
-    '$location', 'loginService', 'errorDisplayer'];
+    '$location', 'loginService', 'errorDisplayer', '$anchorScroll'];
   function BusinessListController($routeParams, restClient,
-    $location, loginService, errorDisplayer) {
+    $location, loginService, errorDisplayer, $anchorScroll) {
     const vm = this;
     vm.query = $routeParams.query;
     vm.join = join;
     vm.unjoin = unjoin;
     vm.user = loginService;
+    vm.range = range;
+    vm.isHalf = isHalf;
 
     activate();
 
@@ -25,7 +27,7 @@
       const match = vm.query.match(coordsRegex);
       if(match) {
         vm.businesses = restClient.list({ ll: match.slice(1).join(',') },
-          listSuccess, errorHandler);
+          listSuccess, errorHandler.bind(null, null));
       } else {
         vm.businesses = restClient.list({ loc: vm.query },
           listSuccess, errorHandler.bind(null, null));
@@ -36,7 +38,9 @@
       if(vm.user.pending) return;
 
       if(!vm.user.data) {
-        errorDisplayer.setMessage('Please login.');
+        errorDisplayer.setMessage('Please login to continue.');
+        $location.hash('top');
+        $anchorScroll();
         return;
       }
 
@@ -62,6 +66,11 @@
       const OK = 200;
       busi.pending = false;
       busi.hasJoined = !busi.hasJoined;
+      if(busi.hasJoined) {
+        busi.joinCount++;
+      } else {
+        busi.joinCount--;
+      }
       if(status === OK) {
         busi.done = true;
       } else {
@@ -84,6 +93,16 @@
         errorDisplayer.setMessage(`No results found for ${vm.query}.`);
         $location.path('/');
       }
+    }
+
+    function range(n) {
+      return Array(Math.floor(+n)).
+        fill().
+        map((e, i) => i);
+    }
+
+    function isHalf(rating) {
+      return (/\.50*$/).test(rating);
     }
   }
 }());

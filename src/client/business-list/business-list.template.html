@@ -1,25 +1,59 @@
-<section>
+<section class="container row">
   <div data-ng-show="vm.businesses.businesses">
-    Found {{vm.businesses.businesses.length}} most popular businesses at {{vm.query}}
+    <h3>Found {{vm.businesses.businesses.length}} most awesome businesses at {{vm.query}}</h3>
     <ul> 
-      <li data-ng-repeat="busi in vm.businesses.businesses | orderBy:['-hasJoined', '-joinCount', '-rating']">
-        <img ng-src="{{busi.image_url}}" alt="{{busi.name}}">
-        {{busi.name}} <br>
-        {{busi.rating}} <br>
-        {{busi.snippet_text}} <br>
-        {{busi.location.display_address.join(', ')}} <br>
-        {{busi.display_phone}} <br>
-        {{busi.joinCount}}
-        <button type="button" data-ng-click="vm.join(busi)" data-ng-hide="busi.hasJoined || busi.done" data-ng-disabled="busi.pending">Join</button>
-        <button type="button" data-ng-click="vm.unjoin(busi)" data-ng-show="busi.hasJoined && !busi.done" data-ng-disabled="busi.pending">Unjoin</button>
-        <p data-ng-show="busi.pending">Loading</p>
-        <p data-ng-show="busi.done">Done</p>
+      <li class="busi-item group" data-ng-repeat="busi in vm.businesses.businesses | orderBy:['-hasJoined', '-joinCount', '-rating']">
+
+        <section class="busi-img">
+          <a ng-href="{{busi.url}}">
+            <img ng-src="{{busi.image_url}}" alt="{{busi.name}}">
+          </a>
+        </section>
+
+        <section class="busi-action">
+          <button type="button" data-ng-click="vm.join(busi)" data-ng-hide="busi.hasJoined || busi.done" data-ng-disabled="busi.pending">
+            <i class="fa fa-thumbs-o-up fa-2x"></i>&nbsp; Join
+          </button>
+          <button type="button" data-ng-click="vm.unjoin(busi)" data-ng-show="busi.hasJoined && !busi.done" data-ng-disabled="busi.pending">
+            <i class="fa fa-hand-stop-o fa-2x"></i>&nbsp; Cancel
+          </button>
+          <i class="fa fa-spinner fa-spin" data-ng-show="busi.pending"></i>
+          <i class="fa fa-check check" data-ng-show="busi.done && busi.hasJoined"></i>
+          <i class="fa fa-times cross" data-ng-hide="busi.hasJoined || !busi.done"></i>
+        </section>
+
+        <section class="busi-info">
+          <a ng-href="{{busi.url}}">
+            <h4 class="busi-name">{{busi.name}}</h4>
+            <i class="fa fa-star busi-rating" data-ng-repeat="x in vm.range(busi.rating)"></i><i class="fa fa-star-half-o busi-rating" data-ng-show="vm.isHalf(busi.rating)"></i>
+            <h5 class="busi-count" data-ng-show="busi.joinCount > 0">
+              {{busi.joinCount}} people will be there tonight
+              <span data-ng-show="busi.hasJoined" class="has-joined-info"> with you</span>
+              !
+              <span data-ng-show="!busi.hasJoined" class="has-joined-info"> Join them!</span>
+            </h5>
+            <h5 class="busi-count" data-ng-hide="busi.joinCount > 0">
+              Be the first person to go there tonight!
+            </h5>
+          </a>
+        </section>
+
+        <section class="busi-snippet" data-ng-show="busi.snippet_text">
+          <q>{{busi.snippet_text}}</q>
+        </section>
+
+        <section class="busi-contact">
+          <p>{{busi.location.display_address.join(', ')}}</p>
+          <p>{{busi.display_phone}}</p>
+        </section>
+
       </li>
     </ul>
     
   </div>
 
   <div data-ng-hide="vm.businesses.businesses">
-    Loading businesses at {{vm.query}}
+    <h3>Loading businesses at {{vm.query}}</h3>
+    <i class="fa fa-spinner fa-spin fa-3x"></i>
   </div>
 </section>

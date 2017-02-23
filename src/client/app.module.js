@@ -4,6 +4,7 @@
     'app.searchBox',
     'app.featureList',
     'app.businessList',
-    'app.core'
+    'app.core',
+    'ngAnimate'
   ]);
 }());

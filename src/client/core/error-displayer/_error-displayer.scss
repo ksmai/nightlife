@@ -1,0 +1,23 @@
+.error-displayer {
+  position: fixed;
+  color: $app-red;
+  font-weight: 700;
+  padding: 10px;
+  background: rgba(lighten($primary-background-color, 10%), .7);
+  left: 50%;
+  top: 20%;
+  border: 3px solid lighten($primary-background-color, 5%);
+  border-radius: 10px;
+  transform: translateX(-50%);
+  transition: $primary-transition;
+
+  button {
+    float: right;
+    padding: 5px;
+    border: 0;
+  }
+}
+
+.error-displayer.ng-hide {
+  opacity: 0;
+}

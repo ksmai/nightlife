@@ -80,4 +80,16 @@ describe('businessList component', function() {
       jasmine.any(Function));
   }));
 
+  it('creates a range of number', function() {
+    /* eslint no-magic-numbers: "off" */
+    expect(ctrl.range(5)).toEqual([0, 1, 2, 3, 4]);
+    expect(ctrl.range('5.5')).toEqual([0, 1, 2, 3, 4]);
+  });
+
+  it('identifies half number', function() {
+    expect(ctrl.isHalf('9.5')).toBe(true);
+    expect(ctrl.isHalf('.500')).toBe(true);
+    expect(ctrl.isHalf('.05')).toBe(false);
+  });
+
 });

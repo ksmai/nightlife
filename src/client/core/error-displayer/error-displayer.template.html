@@ -1,4 +1,8 @@
-<section data-ng-show="vm.error.new">
-  <button type="button" data-ng-click="vm.close()">Close</button>
-  <p data-ng-bind="vm.error.message"></p>
+<section class="error-displayer" data-ng-show="vm.error.new">
+  <div class="group">
+    <button type="button" data-ng-click="vm.close()">
+      <i class="fa fa-times fa-2x"></i>
+    </button>
+  </div>
+  <h3 data-ng-bind="vm.error.message"></h3>
 </section>

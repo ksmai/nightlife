@@ -15,10 +15,23 @@ $left: to left;
 $right: to right;
 
 .feature-item {
-  min-height: 90vh;
+  display: flex;
+  align-items: center;
 
   &:nth-child(odd) {
     text-align: right;
+
+    img {
+      float: left;
+    }
+  }
+
+  &:nth-child(even) {
+    text-align: left;
+
+    img {
+      float: right;
+    }
   }
 
   &:nth-child(6n+1) {
@@ -75,4 +88,10 @@ $right: to right;
   font-style: italic;
   text-transform: capitalize;
   font-weight: 700px;
+}
+
+@media (min-width: $mobile-break-point) {
+  .feature-item {
+    min-height: 50vh;
+  }
 }
