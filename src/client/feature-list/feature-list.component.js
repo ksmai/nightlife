@@ -8,11 +8,12 @@
       controllerAs: 'vm'
     });
 
-  FeatureListController.$inject = ['$location', '$anchorScroll'];
-  function FeatureListController($location, $anchorScroll) {
+  FeatureListController.$inject = ['$location', '$anchorScroll',
+    'features'];
+  function FeatureListController($location, $anchorScroll, features) {
     const vm = this;
-
     vm.tryNow = tryNow;
+    vm.features = features;
 
     function tryNow() {
       $location.hash('top');
