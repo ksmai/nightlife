@@ -8,18 +8,18 @@ A web application that
 The list of businesses is provided by [Yelp](https://www.yelp.com/developers/documentation/v2/search_api).
 
 ## Installation
-1. Clone the repository:
+### Clone the repository:
 ```
 git clone https://github.com/ksmai/nightlife.git
 cd nightlife
 ```
 
-2. Install dependencies:
+### Install dependencies:
 ```
 npm install
 ```
 
-3. Configure API:
+### Configure API:
 Save the following credentials to config.json:
 ```
 "PORT"                    : "The port that the application will be served on",
