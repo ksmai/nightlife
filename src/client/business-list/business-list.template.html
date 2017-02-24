@@ -2,7 +2,7 @@
   <div data-ng-show="vm.businesses.businesses">
     <h3>Found {{vm.businesses.businesses.length}} most awesome businesses at {{vm.query}}</h3>
     <ul> 
-      <li class="busi-item group" data-ng-repeat="busi in vm.businesses.businesses | orderBy:['-hasJoined', '-joinCount', '-rating']">
+      <li class="busi-item busi-item-animate group" data-ng-repeat="busi in vm.businesses.businesses | orderBy:'-rating'">
 
         <section class="busi-img">
           <a ng-href="{{busi.url}}">

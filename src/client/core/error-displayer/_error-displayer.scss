@@ -10,6 +10,7 @@
   border-radius: 10px;
   transform: translateX(-50%);
   transition: $primary-transition;
+  z-index: 101;
 
   button {
     float: right;

@@ -25,6 +25,8 @@
   img {
     transition: $primary-transition;
     border-radius: 5px;
+    max-width: 100%;
+    display: block;
   }
 
   img:hover {
@@ -81,8 +83,12 @@
   color: $app-orange;
 }
 
+.page-loading {
+  text-align: center;
+}
+
 /* animations */
-.busi-item {
+.busi-item-animate {
   &.ng-enter {
     transition: $primary-transition;
     opacity: 0;
@@ -90,18 +96,6 @@
     overflow: hidden;
 
     &.ng-enter-active {
-      opacity: 1;
-      width: 100%;
-    }
-  }
-
-  &.ng-move {
-    transition: $primary-transition;
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
-
-    &.ng-move-active {
       opacity: 1;
       width: 100%;
     }
@@ -120,6 +114,47 @@
   }
 }
 
-.page-loading {
-  text-align: center;
+.animate-view-container {
+  position: relative;
 }
+
+.animate-view-frame {
+  &.ng-enter,
+  &.ng-leave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+
+  &.ng-enter {
+    animation: .5s fade-in;
+    z-index: 100;
+  }
+
+  &.ng-leave {
+    animation: .5s fade-out;
+    z-index: 99;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+

@@ -18,6 +18,11 @@ $right: to right;
   display: flex;
   align-items: center;
 
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
   &:nth-child(odd) {
     text-align: right;
 
