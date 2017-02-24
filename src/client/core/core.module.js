@@ -4,6 +4,7 @@
     'core.restClient',
     'core.errorDisplayer',
     'core.onMain',
-    'core.blurOnRouteChange'
+    'core.blurOnRouteChange',
+    'core.modal'
   ]);
 }());
