@@ -5,7 +5,7 @@
     <form data-ng-submit="vm.search()" class="search-form">
       <fieldset>
         <div class="search-field">
-          <input type="text" data-ng-model="vm.query" placeholder="Location/Coordinates" autofocus>
+          <input type="text" data-ng-model="vm.query" placeholder="Location/Coordinates" blur-on-route-change>
           <button type="submit" class="btn-icon">
             <i class="fa fa-search fa-2x"></i>
           </button>
@@ -31,6 +31,7 @@
         </a>
       </div>
       <div data-ng-hide="vm.user.data">
+        &nbsp;
         <a href="/auth/facebook" target="_self">
           <i class="fa fa-facebook-square fa-3x login-fb"></i>
         </a>

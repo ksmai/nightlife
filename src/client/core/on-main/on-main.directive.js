@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.
-    module('app.core').
+    module('core.onMain').
     directive('onMain', onMainFactory);
 
   onMainFactory.$inject = ['$rootScope', '$location'];

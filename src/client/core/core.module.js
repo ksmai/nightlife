@@ -3,6 +3,7 @@
   angular.module('app.core', [
     'core.restClient',
     'core.errorDisplayer',
-    'core.onMain'
+    'core.onMain',
+    'core.blurOnRouteChange'
   ]);
 }());
