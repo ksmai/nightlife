@@ -4,7 +4,7 @@ describe('onMain directive', function() {
   let $rootScope, $location, element;
   const attr = 'abcde';
 
-  beforeEach(module('app.core'));
+  beforeEach(module('core.onMain'));
 
   beforeEach(inject(function(_$rootScope_, _$compile_, _$location_) {
     $rootScope = _$rootScope_;
