@@ -3,7 +3,10 @@
   "serverJs": "./src/server/**/*.js",
   "serverSpecs": "./src/server/**/*.spec.js",
 
+  "client": "./src/client",
   "clientHtml": "./src/client/**/*.html",
+
+  "clientTemplates": "./src/client/**/*.template.html",
 
   "clientScss": "./src/client/app.scss",
 

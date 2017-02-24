@@ -1,15 +1,16 @@
-const gulp = require('gulp');
-const eslint = require('gulp-eslint');
-const paths = require('./gulp.config.json');
-const jasmine = require('gulp-jasmine');
-const minifyHTML = require('gulp-minify-html');
-const cleanCSS = require('gulp-clean-css');
-const autoprefixer = require('gulp-autoprefixer');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const del = require('del');
-const babel = require('gulp-babel');
-const sass = require('gulp-sass');
+const gulp          = require('gulp');
+const eslint        = require('gulp-eslint');
+const paths         = require('./gulp.config.json');
+const jasmine       = require('gulp-jasmine');
+const minifyHTML    = require('gulp-minify-html');
+const cleanCSS      = require('gulp-clean-css');
+const autoprefixer  = require('gulp-autoprefixer');
+const concat        = require('gulp-concat');
+const uglify        = require('gulp-uglify');
+const del           = require('del');
+const babel         = require('gulp-babel');
+const sass          = require('gulp-sass');
+const templateCache = require('gulp-angular-templatecache');
 
 gulp.task('lint-server', function() {
   return gulp.
@@ -55,7 +56,17 @@ gulp.task('mincss', function() {
     pipe(gulp.dest(paths.bin));
 });
 
-gulp.task('minjs', function() {
+gulp.task('cachetemplate', function() {
+  return gulp.
+    src(paths.clientTemplates).
+    pipe(templateCache({
+      module: 'app',
+      root: '/'
+    })).
+    pipe(gulp.dest(paths.client));
+});
+
+gulp.task('minjs', ['cachetemplate'], function() {
   return gulp.
     src(paths.clientAppJs).
     pipe(concat('app.min.js')).
