@@ -1,11 +1,11 @@
 <section class="container row">
   <div data-ng-show="vm.businesses.businesses">
-    <h3>Found {{vm.businesses.businesses.length}} most awesome businesses at {{vm.query}}</h3>
+    <h3 class="result-message">Found {{vm.businesses.businesses.length}} most awesome businesses at {{vm.query}}</h3>
     <ul> 
       <li class="busi-item busi-item-animate group" data-ng-repeat="busi in vm.businesses.businesses | orderBy:'-rating'">
 
         <section class="busi-img">
-          <a ng-href="{{busi.url}}">
+          <a ng-href="{{busi.url}}" target="_new">
             <img ng-src="{{busi.image_url}}" alt="{{busi.name}}">
           </a>
         </section>
@@ -23,7 +23,7 @@
         </section>
 
         <section class="busi-info">
-          <a ng-href="{{busi.url}}">
+          <a ng-href="{{busi.url}}" target="_new">
             <h4 class="busi-name">{{busi.name}}</h4>
             <i class="fa fa-star busi-rating" data-ng-repeat="x in vm.range(busi.rating)"></i><i class="fa fa-star-half-o busi-rating" data-ng-show="vm.isHalf(busi.rating)"></i>
             <h5 class="busi-count" data-ng-show="busi.joinCount > 0">
@@ -53,7 +53,7 @@
   </div>
 
   <div data-ng-hide="vm.businesses.businesses">
-    <h3>Loading businesses at {{vm.query}}</h3>
+    <h3 class="result-message">Loading businesses at {{vm.query}}</h3>
     <div class="page-loading">
       <i class="fa fa-spinner fa-spin fa-5x"></i>
     </div>

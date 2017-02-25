@@ -11,6 +11,10 @@
   transform: translateX(-50%);
   transition: $primary-transition;
   z-index: 101;
+  max-width: $max-width;
+  width: 100%;
+  max-height: 60%;
+  overflow: hidden;
 
   button {
     float: right;
@@ -21,4 +25,8 @@
 
 .error-displayer.ng-hide {
   opacity: 0;
+}
+
+.error-message {
+  overflow-wrap: break-word;
 }

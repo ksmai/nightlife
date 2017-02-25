@@ -1,3 +1,8 @@
+.result-message {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
 .check {
   color: $app-green;
 }
